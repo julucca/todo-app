@@ -1,0 +1,28 @@
+.add__section {
+    background-color: var(--color-base-secondary);
+    border-radius: 5px;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.4);
+    padding: .75rem 1.25rem;
+
+    input {
+        border: none;
+        background-color: inherit;
+        color: var(--color-default-primary);
+        margin: .25rem 0 0 .75rem;
+        outline: none;
+
+        &::placeholder {
+            color: var(--color-default-secondary);  
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .add__section {
+        padding: 1.25rem;
+
+        input {
+            margin: .25rem 0 0 1.25rem;
+        }
+    }
+}
