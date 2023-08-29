@@ -1,6 +1,7 @@
 const $todoList = document.querySelector('[data-list]');
 const $addForm = document.querySelector('[data-form]');
 const $addInput = document.querySelector('[data-input]');
+const $filterTasksBtns = document.querySelectorAll('[data-filters] button');
 
 const todoList = getStoredList();
 
@@ -20,8 +21,8 @@ function renderTasks (todoList) {
         let taskId = task.id;
         let content = `
             <li class="d-flex align-items-center ${isCompleted ? 'checked' : '' }">
-                <button class="btn btn--checkbox"></button>
-                <p class="flex-grow-1 mb-0">${name}</p>
+                <button class="btn btn--checkbox" onclick='taskIsCompleted(${taskId})' data-id='${taskId}'></button>
+                <p class="flex-grow-1 mb-0" onclick='taskIsCompleted(${taskId})' data-id='${taskId}'>${name}</p>
                 <button class="btn btn--del">
                     <img src="./assets/img/icon-cross.svg" alt="Ícone de deletar a tarefa">
                 </button>
@@ -56,3 +57,75 @@ $addForm.addEventListener('submit', (event) => {
     renderTasks(todoList);
     $addInput.value = '';
 });
+
+// [Filter tasks]
+function activeTasks() {
+    $todoList.innerHTML = '';
+    const activeTasksArr = todoList.filter((task) => {
+      return task.isCompleted === false;
+    });
+    renderTasks(activeTasksArr);
+};
+
+function completedTasks() {
+    $todoList.innerHTML = ''
+    const completedTasksArr = todoList.filter((task) => {
+        return task.isCompleted === true
+    }); 
+    renderTasks(completedTasksArr);
+}
+
+function switchRederedTasks(taskStatus) {
+    switch (taskStatus) {
+        case 'active':
+            activeTasks();
+            activeBtn(taskStatus);
+            break;
+        case 'completed':
+            completedTasks();
+            activeBtn(taskStatus);
+            break;
+        default:
+            $todoList.innerHTML = '';
+            renderTasks(todoList);
+            activeBtn(taskStatus);
+            break;
+    }
+}
+
+$filterTasksBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        let taskStatus = btn.dataset.name;
+        switchRederedTasks(taskStatus)
+    });
+});
+
+const activeBtn = (dataName) => {
+    for (const btn of $filterTasksBtns) {
+        btn.classList.remove('btn--active');
+        if (btn.dataset.name === dataName) {
+            btn.classList.add('btn--active');
+        }
+    }
+}
+
+// [Completed/Check task]
+function taskIsCompleted(taskId) {
+    $todoList.innerHTML = '';
+    let taskStatus = 'all';
+    for (const activeBtn of $filterTasksBtns) {
+        if (activeBtn.classList.contains('btn--active')) {
+            taskStatus = activeBtn.dataset.name;
+        }
+    }
+
+    todoList.forEach((task) => {
+        if (task.id === taskId) {
+            let isComplted = task.isCompleted === true ? false : true;
+            task.isCompleted = isComplted;
+        }
+    });
+
+    switchRederedTasks(taskStatus);
+    setStoredList();
+}
