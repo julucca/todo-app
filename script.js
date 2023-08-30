@@ -23,7 +23,7 @@ function renderTasks (todoList) {
             <li class="d-flex align-items-center ${isCompleted ? 'checked' : '' }">
                 <button class="btn btn--checkbox" onclick='taskIsCompleted(${taskId})' data-id='${taskId}'></button>
                 <p class="flex-grow-1 mb-0" onclick='taskIsCompleted(${taskId})' data-id='${taskId}'>${name}</p>
-                <button class="btn btn--del">
+                <button class="btn btn--del" onclick='deleteTask(${taskId})' data-id='${taskId}'>
                     <img src="./assets/img/icon-cross.svg" alt="Ícone de deletar a tarefa">
                 </button>
             </li>
@@ -129,3 +129,21 @@ function taskIsCompleted(taskId) {
     switchRederedTasks(taskStatus);
     setStoredList();
 }
+
+// [Delete task]
+function deleteTask(taskId) {
+    $todoList.innerHTML = "";
+    let taskStatus = "all";
+    for (const activeBtn of $filterTasksBtns) {
+      if (activeBtn.classList.contains("btn-active")) {
+        taskStatus = activeBtn.dataset.name;
+      }
+    }
+    todoList.forEach((task, index) => {
+      if (task.id === taskId) {
+        todoList.splice(index, 1);
+      }
+    });
+    switchRederedTasks(taskStatus);
+    setStoredList();
+};
