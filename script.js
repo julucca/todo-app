@@ -2,6 +2,7 @@ const $todoList = document.querySelector('[data-list]');
 const $addForm = document.querySelector('[data-form]');
 const $addInput = document.querySelector('[data-input]');
 const $filterTasksBtns = document.querySelectorAll('[data-filters] button');
+const $leftedTasks = document.querySelector('[data-left]');
 
 const todoList = getStoredList();
 
@@ -47,6 +48,7 @@ function addTask(taskName) {
 window.addEventListener('load', () => {
     getStoredList();
     renderTasks(todoList);
+    leftedTasksCounter();
 })
 
 $addForm.addEventListener('submit', (event) => {
@@ -56,6 +58,7 @@ $addForm.addEventListener('submit', (event) => {
     setStoredList();
     renderTasks(todoList);
     $addInput.value = '';
+    leftedTasksCounter();
 });
 
 // [Filter tasks]
@@ -127,6 +130,7 @@ function taskIsCompleted(taskId) {
     });
 
     switchRederedTasks(taskStatus);
+    leftedTasksCounter();
     setStoredList();
 }
 
@@ -145,5 +149,14 @@ function deleteTask(taskId) {
       }
     });
     switchRederedTasks(taskStatus);
+    leftedTasksCounter();
     setStoredList();
 };
+
+// [Left itens]
+function leftedTasksCounter() {    
+    const leftedItems = todoList.filter((task) => {
+        return task.isCompleted === false;
+    });
+    $leftedTasks.innerHTML = leftedItems.length + `${leftedItems.length > 1 ? ' items left' : ' item left'}`;
+}
