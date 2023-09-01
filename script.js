@@ -3,6 +3,7 @@ const $addForm = document.querySelector('[data-form]');
 const $addInput = document.querySelector('[data-input]');
 const $filterTasksBtns = document.querySelectorAll('[data-filters] button');
 const $leftedTasks = document.querySelector('[data-left]');
+const $clearBtn = document.querySelector('[data-clear]');
 
 const todoList = getStoredList();
 
@@ -160,3 +161,14 @@ function leftedTasksCounter() {
     });
     $leftedTasks.innerHTML = leftedItems.length + `${leftedItems.length > 1 ? ' items left' : ' item left'}`;
 }
+
+// [Clear completed tasks]
+$clearBtn.addEventListener('click', () => {
+    const completedTasks = todoList.filter((task) => {
+        return task.isCompleted === true;
+    });
+
+    completedTasks.forEach((task) => {
+        deleteTask(task.id)
+    })
+})
