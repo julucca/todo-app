@@ -7,27 +7,25 @@
 :root {
     --color-base-primary: hsl(0, 0%, 98%);
     --color-base-secondary: hsl(0, 0%, 100%);
-    --color-main: hsl(0, 0%, 0%);
     --color-default-primary: hsl(0, 0%, 0%);
-    --color-default-secondary: hsl(235, 19%, 35%);
-    --color-default-tertiary: hsl(233, 11%, 84%);
-    --color-default-quaternary: hsl(236, 33%, 92%);
+    --color-default-secondary: hsl(233, 11%, 84%);
+    --color-default-tertiary: hsl(236, 9%, 61%);
+    --color-default-quaternary: hsl(233, 11%, 84%);
+    --color-hover-primary: hsl(220, 98%, 61%);
     --color-hover-secondary: hsl(0, 0%, 0%);
-    
+    --color-gradient: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  
     --bg-desktop: url('../img/bg-desktop-light.jpg');
     --bg-mobile: url('../img/bg-mobile-light.jpg');
 }
 
 :root[data-theme="dark"] {
-    --color-base-primary: hsl(235, 21%, 11%);
-    --color-base-secondary: hsl(235, 24%, 19%);  
-    --color-main: hsl(0, 0%, 100%); 
-    --color-default-primary: hsl(234, 39%, 85%);
-    --color-default-secondary: hsl(234, 11%, 52%);
-    --color-default-tertiary: hsl(233, 14%, 35%);
+    --color-base-primary: hsl(235, 21%, 11%); 
+    --color-base-secondary: hsl(235, 24%, 19%);   
+    --color-default-primary: hsl(234, 39%, 85%); 
+    --color-default-secondary: hsl(233, 14%, 35%);
+    --color-default-tertiary: hsl(233, 14%, 35%);   
     --color-default-quaternary: hsl(237, 14%, 26%);
-    --color-gradient: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-    --color-hover-primary: hsl(220, 98%, 61%);
     --color-hover-secondary: hsl(236, 33%, 92%);
 
     --bg-desktop: url('../img/bg-desktop-dark.jpg');
