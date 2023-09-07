@@ -1,12 +1,11 @@
 # Frontend Mentor: Todo app
 
-Este projeto é a solução para o [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
+Este repositório contém um app de lista de tarefas desenvolvido com base no [desafio da plataforma Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
 
 
 ## 📁 Detalhes do projeto
 
-A proposta para este desafio foi criar um app de lista de tarefas usando JavaScript vanilla.
-
+A proposta para este projeto foi desenvolver um CRUD com JavaScript puro. Para o armazenamento de dados utilizei o Local Storage.
 
 **Features do projeto:**
 
@@ -19,11 +18,11 @@ A proposta para este desafio foi criar um app de lista de tarefas usando JavaScr
 - Adicionar novas tarefas à lista;
 - Marcar tarefas como concluídas;
 - Excluir tarefas da lista;
-- Filtrar por todas/ativas/concluídas tarefas;
+- Filtragem de tarefas;
 - Limpar todas as tarefas concluídas;
 - Alternar entre o modo claro e escuro.
 
-Para desenvolver a aplicação a abordagem utilizada foi o mobile-first e para estilização o Bootstrap e Sass.
+Para desenvolver a aplicação optei pela abordagem mobile-first. E para a estilização utilizei o Bootstrap com Sass.
 
 <div align="center">
 	<img width=600px src="./assets/img/readme/todo-app-responsive.gif">
